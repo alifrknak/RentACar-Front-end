@@ -16,7 +16,12 @@ font-style: initial;
   background-color: cadetblue;
 }
 
-.btn{
+.filter{
   margin:  30px 55px;
 }
 
+.r{
+  margin:  5px 40px;
+  background-color: antiquewhite;
+  margin-bottom: 40px;
+}

@@ -1,7 +1,7 @@
 <div class="container">
 
 <div class="row">
-  <div *ngFor="let car of cars | filtercar:carsByColorId:carsByBrandId " class="card col-3" style="width: 18rem;">
+  <div *ngFor="let car of cars  " class="card col-3" style="width: 18rem;">
     <img  class="card-img-top" alt="foto yok">
     <div class="card-body">
       <h5 class="card-title">{{car.dailyPrice | currency}}</h5>
@@ -11,3 +11,4 @@
   </div>
 </div>
 </div>
+

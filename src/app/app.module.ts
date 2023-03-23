@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CarComponent } from './components/car/car.component';
 import { CategoryComponent } from './components/category/category.component';
-import { FiltercarPipe } from './pipes/filtercar.pipe';
 
 @NgModule({
   declarations: [
@@ -16,7 +15,6 @@ import { FiltercarPipe } from './pipes/filtercar.pipe';
     NavbarComponent,
     CarComponent,
     CategoryComponent,
-    FiltercarPipe
   ],
   imports: [
     BrowserModule,

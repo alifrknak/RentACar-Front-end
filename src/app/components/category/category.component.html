@@ -15,8 +15,8 @@
 </div>
 <div class=" color">
   <label class="label">Fiyat</label>
-  <select #price (change)="priceSelect(price.value)"     class="form-select" aria-label="Default select example">
-    <option  selected>Fiyat aralığı seç</option>
+  <select #price (change)="priceSelect(price.value)" class="form-select" aria-label="Default select example">
+    <option selected>Fiyat aralığı seç</option>
     <option >$2000 ve altı</option>
     <option >$3000 - $4000</option>
     <option >$4000 - $5000</option>
@@ -24,6 +24,6 @@
   </select>
 </div>
 
- <button routerLink="color/{{selectedColorId}}/brand/{{selectedBrandId}}/price/{{selectedPrice}}"  type="button" class="btn btn-warning">Filtrele</button>
-
+ <button (click)="filterbtn()" routerLink="color/{{selectedColorId}}/brand/{{selectedBrandId}}/price/{{selectedPrice}}"  type="button" class="filter btn btn-warning">Filtrele</button>
+   <button (click)="removeFilter()"  *ngIf="filterButton" type="button" class="btn r" >Filteyi kaldır</button>
 </div>
