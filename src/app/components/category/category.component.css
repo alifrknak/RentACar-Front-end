@@ -1,0 +1,22 @@
+.color{
+  margin-top: 10px;
+  text-align: center;
+}
+
+.label{
+margin-bottom: 10px;
+color: white;
+font-style: initial;
+}
+
+.Main{
+  border: 1px solid silver;
+  border-radius: 30px;
+  margin-top: 20px;
+  background-color: cadetblue;
+}
+
+.btn{
+  margin:  30px 55px;
+}
+

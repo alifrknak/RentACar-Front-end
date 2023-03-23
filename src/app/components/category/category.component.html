@@ -1,0 +1,29 @@
+<div class="Main">
+<div class="color">
+  <label class="label">Renk</label>
+  <select #color (change)="colorSelect(color.value)"  class="form-select" aria-label="Default select example">
+    <option selected>Renk seç</option>
+   <option  *ngFor="let color of colors" id={{color.id}}>{{color.name}}</option>
+  </select>
+</div>
+<div class="color">
+  <label class="label">Marka</label>
+  <select #brand (change)="brandSelect(brand.value)" class="form-select" aria-label="Default select example">
+    <option selected>Marka seç</option>
+    <option *ngFor="let brand of brands">{{brand.name}}</option>
+  </select>
+</div>
+<div class=" color">
+  <label class="label">Fiyat</label>
+  <select #price (change)="priceSelect(price.value)"     class="form-select" aria-label="Default select example">
+    <option  selected>Fiyat aralığı seç</option>
+    <option >$2000 ve altı</option>
+    <option >$3000 - $4000</option>
+    <option >$4000 - $5000</option>
+    <option >$5000 ve üzeri</option>
+  </select>
+</div>
+
+ <button routerLink="color/{{selectedColorId}}/brand/{{selectedBrandId}}/price/{{selectedPrice}}"  type="button" class="btn btn-warning">Filtrele</button>
+
+</div>

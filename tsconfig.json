@@ -22,7 +22,9 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "strictPropertyInitialization": false   //ilk deger atanmadan degisken tanımlamayı sağlar
+    ,"strictNullChecks": false //////////////null kabul eder
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
