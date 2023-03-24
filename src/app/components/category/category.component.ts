@@ -14,7 +14,6 @@ export class CategoryComponent {
   brands: Brand[];
   colors: Color[];
   filterButton = false;
-
   selectedColorId: number = -1;
   selectedBrandId: number = -1;
   selectedPrice: string = "-1";

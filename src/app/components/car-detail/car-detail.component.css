@@ -1,0 +1,15 @@
+.img{
+border :1px black solid;
+height: 400px;
+margin-left: 20px;
+}
+
+.row{
+  margin-top: 10px;
+}
+
+.cart{
+display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}

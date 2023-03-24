@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CarComponent } from './components/car/car.component';
 import { CategoryComponent } from './components/category/category.component';
+import { CarDetailComponent } from './components/car-detail/car-detail.component';
+import { RentalComponent } from './components/rental/rental.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { CategoryComponent } from './components/category/category.component';
     NavbarComponent,
     CarComponent,
     CategoryComponent,
+    CarDetailComponent,
+    RentalComponent,
   ],
   imports: [
     BrowserModule,

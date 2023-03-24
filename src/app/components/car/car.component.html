@@ -6,7 +6,7 @@
     <div class="card-body">
       <h5 class="card-title">{{car.dailyPrice | currency}}</h5>
       <p class="card-text">{{car.description +" c: "+car.colorId+" "+car.brandId}}</p>
-      <a  class="btn btn-primary">Kirala</a>
+      <a routerLink="details/{{car.id}}" class="btn btn-primary">Detay</a>
     </div>
   </div>
 </div>

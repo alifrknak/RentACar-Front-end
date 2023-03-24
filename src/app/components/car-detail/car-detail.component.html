@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="row">
+  <div class="col-md-11">
+    <div class="img">
+      <img src="" alt="resim yok">
+    </div>
+  </div>
+</div>
+
+  <div class="row">
+<div class="col-md-4">
+  <div class="card" style="width: 18rem;">
+    <div class="card-header">
+      Renk
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">{{carDetails.dailyPrice}}</li>
+    </ul>
+  </div>
+
+</div>
+<div class="col-md-4">
+  <div class="card" style="width: 18rem;">
+    <div class="card-header">
+      Marka
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">{{carDetails.brandName}}</li>
+    </ul>
+  </div>
+</div>
+    <div class="col-md-4">
+      <div class="card" style="width: 18rem;">
+        <div class="card-header">
+          Fiyat
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">{{carDetails.dailyPrice|currency}}</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card" style="width: 18rem;">
+        <div class="card-header">
+          Açıklama
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">{{carDetails.descrip}}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card" style="width: 18rem;">
+        <div class="card-header">
+          Durum
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">{{rentalState}}</li>
+        </ul>
+      </div>
+    </div>
+    </div>
+
+    <div class="row">
+      <div class="cart">
+        <button routerLink="rental"  *ngIf="rentalBool" type="button" class="btn btn-success">Kirala</button>
+      </div>
+    </div>
+</div>
