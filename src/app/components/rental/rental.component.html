@@ -1,12 +1,32 @@
 
 
 <div class="container">
-<!-- sil takvimi saçma -->
 
+  <form >
+    <div class="row">
+    <h3 class="head">Ödeme Adımı</h3>
+    </div>
+    <div class="row">
+    <div  class="form-floating col-md-6">
+      <input required type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <label for="floatingInput">Kart No</label>
+    </div>
+  </div>
+<div class="row">
+    <div class="form-floating col-md-6">
+      <input required type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <label for="floatingInput">Telefon Numarası</label>
+    </div>
+  </div>
+    <div class="row">
+    <div class="form-floating col-md-6">
+      <textarea required class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+      <label for="floatingTextarea">Adress</label>
+    </div>
+  </div>
 <div class="but">
-  <button (click)="add()" type="button" class="btn btn-success">Kirala</button>
+  <button (click)="add()" routerLink=""  type="submit" class="btn btn-success">Kirala</button>
 </div>
-
+</form>
 </div>
-
 

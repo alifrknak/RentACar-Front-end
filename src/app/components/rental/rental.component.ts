@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Rental } from 'src/app/models/rental';
 import { RentalService } from 'src/app/service/rental.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-rental',
@@ -13,22 +14,24 @@ export class RentalComponent {
   carId:number;
 
        constructor(private rentalService: RentalService,
-        private activatedRoute: ActivatedRoute) {
+        private activatedRoute: ActivatedRoute,
+    private toastrService:ToastrService
+    ) {
     this.activatedRoute.params.subscribe(params => {
         this.carId = params["id"];
           })
     }
 
-
-
   add(){
+
+
     let rental = new Rental()
     rental.carId = this.carId;
     rental.rentDate =new Date(Date.now());
     rental.customerId =1;
 
     this.rentalService.add(rental).subscribe(response => {
-      alert(response.success)
+    this.toastrService.success("Kiralama Başarılı.","Kiralandı.")
     });
     }
 }
