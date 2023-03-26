@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Rental } from 'src/app/models/rental';
 import { RentalService } from 'src/app/service/rental.service';
 import { ToastrService } from 'ngx-toastr';
+import { FormGroup, FormBuilder, FormControl, Validator, Validators } from "@angular/forms"
 
 @Component({
   selector: 'app-rental',
@@ -15,7 +16,7 @@ export class RentalComponent {
 
        constructor(private rentalService: RentalService,
         private activatedRoute: ActivatedRoute,
-    private toastrService:ToastrService
+    private toastrService:ToastrService,
     ) {
     this.activatedRoute.params.subscribe(params => {
         this.carId = params["id"];
@@ -23,12 +24,10 @@ export class RentalComponent {
     }
 
   add(){
-
-
     let rental = new Rental()
     rental.carId = this.carId;
     rental.rentDate =new Date(Date.now());
-    rental.customerId =1;
+    rental.customerId = 1;
 
     this.rentalService.add(rental).subscribe(response => {
     this.toastrService.success("Kiralama Başarılı.","Kiralandı.")

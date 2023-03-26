@@ -1,0 +1,12 @@
+.content{
+  margin-top: 20px;
+}
+
+.card-footer{
+  display: flex;
+  justify-content: center;
+}
+
+.card-footer button{
+  width: 100px;
+}

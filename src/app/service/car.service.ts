@@ -5,6 +5,7 @@ import { Car } from '../models/car';
 import { Observable } from 'rxjs';
 import { CarDetails } from '../models/carDetails';
 import { ResponseModel } from '../models/responseModel';
+import { ResponseModelBase } from '../models/responseModelBase';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class CarService {
 
   constructor(private httlpClient: HttpClient) { }
 
-  apiPath = "https://localhost:44380/api/";
+  private apiPath = "https://localhost:44380/api/";
 
   getCars(): Observable<ListResponseModel<Car>> {
 
@@ -38,4 +39,13 @@ export class CarService {
 
     return this.httlpClient.get<ResponseModel<CarDetails>>(newPath);
   }
+
+  add(car: Car): Observable<ResponseModelBase> {
+
+    let newPath = this.apiPath + "Cars/add";
+
+    return this.httlpClient.post<ResponseModelBase>(newPath, car);
+  }
+
+
 }
