@@ -7,17 +7,23 @@
       <div class="card-body">
         <form [formGroup]="carAddForm">
           <div class="mb-3">
-            <label for="productName">Renk</label>
+            <label >Renk</label>
             <div class="form-group">
-              <input type="text" id="productName" formControlName="colorId" class="form-control"
-                placeholder="Renk gir" />
+              <select required #color (change)="colorSelect(color.value)"  class="form-select" aria-label="Default select example">
+                <option selected>Renk seç</option>
+               <option  *ngFor="let color of colors" id={{color.id}}>{{color.name}}</option>
+              </select>
+              <button routerLink="coloradd" class="btn btn-secondary">Renk Ekle</button>
             </div>
           </div>
           <div class="mb-3">
-            <label for="productName">Marka</label>
+            <label >Marka</label>
             <div class="form-group">
-              <input type="text" id="productName" formControlName="brandId" class="form-control"
-                placeholder="Marka gir" />
+              <select required #brand (change)="brandSelect(brand.value)"  class="form-select" aria-label="Default select example">
+                <option  selected>Marka seç</option>
+               <option  *ngFor="let brand of brands" id={{brand.id}}>{{brand.name}}</option>
+              </select>
+              <button routerLink="brandadd" class="btn btn-secondary">Marka Ekle</button>
             </div>
           </div>
 

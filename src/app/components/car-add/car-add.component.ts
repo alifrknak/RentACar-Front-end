@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validator, Validators } from "@angular/forms"
 import { Car } from 'src/app/models/car';
-import { BrandService } from 'src/app/service/brand.service';
 import { CarService } from 'src/app/service/car.service';
-import {Brand} from 'src/app/models/brand'
-import { ColorService } from 'src/app/service/color.service';
+import { Brand } from 'src/app/models/brand'
 import { Color } from 'src/app/models/color';
+import { CategoryService } from 'src/app/service/category.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-car-add',
@@ -15,79 +15,81 @@ import { Color } from 'src/app/models/color';
 export class CarAddComponent {
 
   carAddForm: FormGroup;
+  colors: Color[];
+  brands: Brand[];
+
+  selectedColorId: number;
+  selectedBrandId: number;
 
   constructor(private formBuilder: FormBuilder,
-    private carService:CarService,
-    private brandService:BrandService,
-    private colorService:ColorService
-    )
-    {
-        this.createCarAddFrom();
-     }
+    private carService: CarService,
+    private categoryService: CategoryService,
+    private toastrService: ToastrService
+  ) {
+    categoryService.getBrands().subscribe(res => {
+      this.brands = res.data;
+    })
+    categoryService.getColors().subscribe(res => {
+      this.colors = res.data;
+    })
+
+    this.createCarAddFrom();
+  }
 
   createCarAddFrom() {
 
-    this.carAddForm =  this.formBuilder.group({
+    this.carAddForm = this.formBuilder.group({
       modelYear: ["", Validators.required],
-      colorId: ["", Validators.required],
-      brandId: ["", Validators.required],
+      colorId: [0, Validators.required],
+      brandId: [0, Validators.required],
       dailyPrice: ["", Validators.required],
       description: ["", Validators.required]
     })
   }
 
-  add(){
-    if(this.carAddForm.valid)
-      {
-        let car = this.carAddForm.value as Car;
+  add() {
+    if (this.carAddForm.valid) {
 
-        this.setBrand();
-        this.setColor();
+      let car = this.carAddForm.value as Car;
+      car.brandId = this.selectedBrandId;
+      car.colorId = this.selectedColorId;
 
-        this.carService.add(car).subscribe(response => {
-            console.log(response);
-        });
-      }
-  }
-
-  setColor(){
-
-    let car = this.carAddForm.value;
-
-    this.colorService.checkColorExists(car.colorId).subscribe(response => {
-        if(!response.success)
+      this.carService.add(car).subscribe(response => {
+        this.toastrService.success("Araba eklendi.", "Başarılı")
+      }, responsError => {
+        if(responsError.error.Errors.length > 0)
         {
-            let color = {
-            name:car.colorId
-          } as Color;
-          this.colorService.add(color).subscribe(q=>{});
+          for (const i of responsError.error.Errors) {
+            this.toastrService.error(i.ErrorMessage,"Doğrulama hatası");
+          }
         }
-        this.colorService.getByName(this.carAddForm.value.colorId).subscribe(q=>{
-          this.carAddForm.value.colorId = q.data.id
-      })
-    })
 
+      });
+
+    } else {
+      this.toastrService.error("Form Eksik", "!!");
+    }
+  }
+
+
+  colorSelect(color: string) {
+    if (color != "Renk seç") {
+      let s = this.colors.filter(q => q.name == color);
+      this.selectedColorId = s[0].id;
+    } else {
+      this.selectedColorId = -1;
+    }
 
   }
 
-  setBrand(){
-    let car = this.carAddForm.value;
-
-    this.brandService.checkBrandExists(car.brandId).subscribe(response => {
-      if(!response.success)
-      {
-        let brand = {
-          name :car.brandId
-        } as Brand;
-        this.brandService.add(brand).subscribe(q =>{})
-      }
-
-      this.brandService.getByName(this.carAddForm.value.brandId).subscribe(q=> {
-        this.carAddForm.value.brandId = q.data.id
-      })
-
-    })
-
+  brandSelect(brand: string) {
+    if (brand != "Marka seç") {
+      let s = this.brands.filter(q => q.name == brand);
+      this.selectedBrandId = s[0].id;
+    } else {
+      this.selectedBrandId = -1;
+    }
   }
+
 
 }

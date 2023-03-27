@@ -13,6 +13,8 @@ import { CarDetailComponent } from './components/car-detail/car-detail.component
 import { RentalComponent } from './components/rental/rental.component';
 import { ToastrModule } from 'ngx-toastr';
 import { CarAddComponent } from './components/car-add/car-add.component';
+import { ColorAddComponent } from './components/color-add/color-add.component';
+import { BrandAddComponent } from './components/brand-add/brand-add.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { CarAddComponent } from './components/car-add/car-add.component';
     CarDetailComponent,
     RentalComponent,
     CarAddComponent,
+    ColorAddComponent,
+    BrandAddComponent,
   ],
   imports: [
     BrowserModule,

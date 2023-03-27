@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Brand } from 'src/app/models/brand';
 import { Color } from 'src/app/models/color';
-import { CategoryService } from 'src/app/service/categoryservice.service';
+import { CategoryService } from 'src/app/service/category.service';
 
 @Component({
   selector: 'app-category',
