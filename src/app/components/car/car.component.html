@@ -1,14 +1,49 @@
 <div class="container">
 
-<div class="row">
-  <div *ngFor="let car of cars  " class="card col-3" style="width: 18rem;">
-    <img  class="card-img-top" alt="foto yok">
-    <div class="card-body">
-      <h5 class="card-title">{{car.dailyPrice | currency}}</h5>
-      <p class="card-text">{{car.description +" c: "+car.colorId+" "+car.brandId}}</p>
-      <a routerLink="details/{{car.id}}" class="btn btn-primary">Detay</a>
+  <div class="filter">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="set">
+          <label class="label">Renk</label>
+          <select #color (change)="changeColor(color.value)" class="form-select" aria-label="Default select example">
+            <option selected>Renk seç</option>
+            <option *ngFor="let color of colors" id={{color.id}}>{{color.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="set">
+          <label class="label">Marka</label>
+          <select #brand (change)="changeBrand(brand.value)" class="form-select" aria-label="Default select example">
+            <option selected>Marka seç</option>
+            <option *ngFor="let brand of brands">{{brand.name}}</option>
+
+          </select>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="set">
+          <label class="label">Fiyat Aralığı</label>
+          <select #price (change)="changePrice(price.value)" class="form-select" aria-label="Default select example">
+            <option selected>Fiyat aralığı seç</option>
+            <option>$3000 ve altı</option>
+            <option>$3000 - $4000</option>
+            <option>$4000 - $5000</option>
+            <option>$5000 ve üzeri</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div *ngFor="let car of cars |car:filterByColor:filterByBrand:filterByPrice" class="card col-3"
+      style="width: 18rem;">
+      <img class="card-img-top" alt="foto yok">
+      <div class="card-body">
+        <h5 class="card-title">{{car.dailyPrice | currency}}</h5>
+        <p class="card-text">{{"Açıklama :"+" "+car.description}}</p>
+        <a routerLink="details/{{car.id}}" class="btn btn-primary">Detay</a>
+      </div>
     </div>
   </div>
 </div>
-</div>
-

@@ -4,6 +4,9 @@ import { Car } from 'src/app/models/car';
 import { CarService } from 'src/app/service/car.service';
 import { CategoryComponent } from '../category/category.component';
 import { Input } from '@angular/core';
+import { Color } from 'src/app/models/color';
+import { Brand } from 'src/app/models/brand';
+import { CategoryService } from 'src/app/service/category.service';
 
 @Component({
   selector: 'app-car',
@@ -12,70 +15,60 @@ import { Input } from '@angular/core';
 })
 export class CarComponent {
   cars: Car[];
+  brands: Brand[];
+  colors: Color[];
+
   filterByColor = -1;
   filterByBrand = -1;
   filterByPrice = "Fiyat aralığı seç";
 
-  constructor(private carService: CarService, private activatedRoute: ActivatedRoute) {
-    this.activatedRoute.params.subscribe((params) => {
-      if (params['color'] != -1 && params['color'] != null)
-        this.filterByColor = params['color'];
-      if (params['brand'] != -1 && params['brand'] != null)
-        this.filterByBrand = params['brand'];
-      if (params['price'] != "-1" && params['price'] != null)
-      this.filterByPrice = params["price"];
-        this.getCars();
-    });
+  constructor(private carService: CarService,
+     private activatedRoute: ActivatedRoute,
+     private categoryService:CategoryService) {
+
+    this.getCars();
+   this.getBrands();
+   this.getColors();
+
   }
+
 
   getCars() {
     this.carService.getCars().subscribe((response) => {
       this.cars = response.data;
-
-      if (this.filterByColor != -1) {
-        this.cars = this.cars.filter((q) => q.colorId == this.filterByColor);
-        this.filterByColor = -1;
-      }
-      if (this.filterByBrand != -1) {
-        this.cars = this.cars.filter((q) => q.brandId == this.filterByBrand);
-        this.filterByBrand = -1;
-      }
-      if (this.filterByPrice != "Fiyat aralığı seç") {
-        this.priceFilter(this.filterByPrice)
-        this.filterByPrice = "Fiyat aralığı seç";
-      }
     });
   }
-
-  getCarsByColor(id: number) {
-    this.carService.getCarsByColor(id).subscribe((response) => { });
+  getBrands(){
+    this.categoryService.getBrands().subscribe(response=> {
+      this.brands =  response.data
+    })
+  }
+  getColors(){
+    this.categoryService.getColors().subscribe(response=>{
+      this.colors = response.data
+    })
   }
 
-  getCarsByBrand(id: number) {
-    this.carService.getCarsByBrand(id).subscribe((response) => { });
+  changeColor(color:string){
+   if (color != "Renk seç") {
+      let s = this.colors.filter(q => q.name == color);
+      this.filterByColor = s[0].id;
+    } else
+      this.filterByColor = -1;
   }
 
+  changeBrand(brand:string){
+    if (brand != "Marka seç") {
+      let s = this.brands.filter(q => q.name == brand);
+      this.filterByBrand = s[0].id;
+    } else
+      this.filterByBrand = -1;
+  }
 
-  //baska sınıfa al
-  priceFilter(price: string) {
-
-    switch (price) {
-      case "$2000 ve altı":
-        this.cars = this.cars.filter(q => q.dailyPrice <= 2000 )
-        break;
-
-      case "$3000 - $4000":
-        this.cars = this.cars.filter(q => q.dailyPrice <= 4000 && q.dailyPrice >= 3000)
-        break;
-
-        case "$4000 - $5000":
-          this.cars = this.cars.filter(q => q.dailyPrice >= 4000 && q.dailyPrice <= 5000)
-          break;
-
-          case "$5000 ve üzeri":
-            this.cars = this.cars.filter(q => q.dailyPrice >=5000)
-            break;
-
-    }
+  changePrice(price:string){
+    if (price != "Fiyat aralığı seç")
+    this.filterByPrice = price;
+  else
+    this.filterByPrice = "-1";
   }
 }
