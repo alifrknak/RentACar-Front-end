@@ -1,0 +1,39 @@
+<div class="login">
+  <main class="form-signin w-100 m-auto">
+    <form [formGroup]="registerForm"  >
+      <h1 class="h3 mb-3 fw-normal">Kayıt Ol</h1>
+
+      <div class="main">
+        <div class="form-floating">
+          <input formControlName="first_name" type="text" class="form-control" id="flgoatingInput" placeholder="name@example.com">
+        <label for="floatingInput">İsim</label>
+      </div>
+
+      <div class="form-floating">
+        <input formControlName="last_name" type="text" class="form-control" id="afloatingInput" placeholder="name@example.com">
+      <label for="floatingInput">Soyisim</label>
+    </div>
+
+        <div class="form-floating">
+          <input formControlName="email" type="email" class="form-control" id="ffloatingInput" placeholder="name@example.com">
+        <label for="floatingInput">E-posta</label>
+      </div>
+
+      <div class="form-floating">
+        <input formControlName="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <label for="floatingPassword">Sifre</label>
+    </div>
+
+  </div>
+  <div>
+  </div>
+    </form>
+    <div class="form-floating">
+      <input [(ngModel)]="verifyPassword"  type="text" class="form-control" id="pPassword" placeholder="Password">
+      <label for="floatingPassword">Sifre Tekrar</label>
+  </div>
+  <button (click)="register()"  class="w-100 btn btn-lg btn-primary" type="submit">Kayıt Ol</button>
+
+  </main>
+
+</div>

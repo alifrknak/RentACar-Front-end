@@ -33,7 +33,7 @@ export class LoginComponent {
   login(){
     let user = this.loginForm.value as Login;
     this.authService.login(user).subscribe(response=> {
-      this.storageService.set("token",response.data.token)
+      this.storageService.set(this.storageService.token,response.data.token)
       this.toastrService.success("Giriş Yaptınız.","Başarılı")
     },Error =>{
       this.toastrService.error("Hatalı giriş","Tekrar dene")

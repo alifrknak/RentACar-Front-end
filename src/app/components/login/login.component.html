@@ -4,21 +4,19 @@
       <h1 class="h3 mb-3 fw-normal">Giriş Yap</h1>
 
       <div class="main">
-      <div class="col-md-3">
       <div class="form-floating">
           <input formControlName="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
         <label for="floatingInput">E-posta</label>
-        </div>
       </div>
-      <div class="col-md-3">
       <div class="form-floating">
         <input formControlName="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
         <label for="floatingPassword">Sifre</label>
-      </div>
     </div>
-    <div class="col-md-1">
-      <button (click)="login()" class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-    </div>
+      <button (click)="login()" class="w-100 btn btn-lg btn-primary" type="submit">Giriş Yap</button>
+  </div>
+  <div>
+    <button  routerLink="register" type="button" class="btn btn-warning">Kayıt ol</button>
+
   </div>
     </form>
   </main>

@@ -3,6 +3,7 @@ import { Token } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Login } from '../models/login';
+import { Register } from '../models/register';
 import { ResponseModel } from '../models/responseModel';
 import { TokenModule } from '../models/tokenModule';
 import { StorageService } from './storage.service';
@@ -23,8 +24,13 @@ export class AuthService {
   }
 
   isAuthenticated() {
-    if (this.storageService.get("token"))
+    if (this.storageService.get(this.storageService.token))
       return true;
     return false;
+  }
+
+  register(register:Register):Observable<ResponseModel<TokenModule>>{
+    let newPath = this.apiPath + "register";
+    return this.httpClient.post<ResponseModel<TokenModule>>(newPath, register);
   }
 }

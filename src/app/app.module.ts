@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -17,6 +17,9 @@ import { ColorAddComponent } from './components/color-add/color-add.component';
 import { BrandAddComponent } from './components/brand-add/brand-add.component';
 import { CarPipe } from './pipes/car.pipe';
 import { LoginComponent } from './components/login/login.component';
+import { NavbarPipe } from './pipes/navbar.pipe';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,8 @@ import { LoginComponent } from './components/login/login.component';
     BrandAddComponent,
     CarPipe,
     LoginComponent,
+    NavbarPipe,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +48,9 @@ import { LoginComponent } from './components/login/login.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -6,18 +6,19 @@ import { CarDetailComponent } from './components/car-detail/car-detail.component
 import { CarComponent } from './components/car/car.component';
 import { ColorAddComponent } from './components/color-add/color-add.component';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 import { RentalComponent } from './components/rental/rental.component';
 import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
   {path:"",component:CarComponent},
-  //{path:"color/:color/brand/:brand/price/:price", component:CarComponent},//sil
   {path:"details/:id",component:CarDetailComponent},
   {path:"details/:id/rental",component:RentalComponent},
   {path:"caradd",component:CarAddComponent,canActivate:[LoginGuard]},
   {path:"caradd/coloradd",component:ColorAddComponent},
   {path:"caradd/brandadd",component:BrandAddComponent},
-  {path:"login", component:LoginComponent}
+  {path:"login", component:LoginComponent},
+  {path:"login/register", component:RegisterComponent}
 ];
 
 @NgModule({
