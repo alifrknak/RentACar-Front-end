@@ -14,9 +14,10 @@ import { StorageService } from './storage.service';
 export class AuthService {
 
   constructor(private httpClient: HttpClient,
-    private storageService:StorageService) { }
+    private storageService: StorageService) { }
 
   private apiPath = "https://localhost:44380/api/Auth/";
+
 
   login(login: Login): Observable<ResponseModel<TokenModule>> {
     let newPath = this.apiPath + "login";
@@ -29,8 +30,9 @@ export class AuthService {
     return false;
   }
 
-  register(register:Register):Observable<ResponseModel<TokenModule>>{
+  register(register: Register): Observable<ResponseModel<TokenModule>> {
     let newPath = this.apiPath + "register";
     return this.httpClient.post<ResponseModel<TokenModule>>(newPath, register);
   }
+
 }

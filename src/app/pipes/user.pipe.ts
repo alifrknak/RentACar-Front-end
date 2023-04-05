@@ -2,14 +2,19 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { AuthService } from '../service/auth.service';
 
 @Pipe({
-  name: 'navbar'
+  name: 'user'
 })
-export class NavbarPipe implements PipeTransform {
+export class UserPipe implements PipeTransform {
 
   constructor(private authService: AuthService) { }
 
   transform(value: string): string {
+    console.log(value
+    );
+    if (this.authService.isAuthenticated())
+      return value;
+    return "Giriş Yap";
 
-    return this.authService.isAuthenticated() ?  "Çıkış Yap" : "Giriş Yap";
   }
+
 }

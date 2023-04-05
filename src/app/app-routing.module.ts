@@ -11,14 +11,14 @@ import { RentalComponent } from './components/rental/rental.component';
 import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
-  {path:"",component:CarComponent},
-  {path:"details/:id",component:CarDetailComponent},
-  {path:"details/:id/rental",component:RentalComponent},
-  {path:"caradd",component:CarAddComponent,canActivate:[LoginGuard]},
-  {path:"caradd/coloradd",component:ColorAddComponent},
-  {path:"caradd/brandadd",component:BrandAddComponent},
-  {path:"login", component:LoginComponent},
-  {path:"login/register", component:RegisterComponent}
+  { path: "", component: CarComponent },
+  { path: "details/:id", component: CarDetailComponent },
+  { path: "details/:id/rental", component: RentalComponent },
+  { path: "caradd", component: CarAddComponent, canActivate: [LoginGuard] },
+  { path: "caradd/coloradd", component: ColorAddComponent },
+  { path: "caradd/brandadd", component: BrandAddComponent },
+  { path: "login", component: LoginComponent },
+  { path: "login/register", component: RegisterComponent }
 ];
 
 @NgModule({

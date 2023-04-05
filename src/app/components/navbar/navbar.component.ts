@@ -1,6 +1,8 @@
 
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/service/auth.service';
+import { StorageService } from 'src/app/service/storage.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +11,8 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class NavbarComponent {
 
-  inorout:string = "Giriş Yap"
+  constructor(public userService: UserService,
+    public storeService:StorageService) {}
 
 }
 
