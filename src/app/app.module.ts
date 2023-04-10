@@ -20,6 +20,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { RegisterComponent } from './components/register/register.component';
 import { UserPipe } from './pipes/user.pipe';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { UserPipe } from './pipes/user.pipe';
     LoginComponent,
     RegisterComponent,
     UserPipe,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
