@@ -57,10 +57,9 @@ export class CarAddComponent {
       this.carService.add(car).subscribe(response => {
         this.toastrService.success("Araba eklendi.", "Başarılı")
       }, responsError => {
-        if(responsError.error.Errors.length > 0)
-        {
+        if (responsError.error.Errors.length > 0) {
           for (const i of responsError.error.Errors) {
-            this.toastrService.error(i.ErrorMessage,"Doğrulama hatası");
+            this.toastrService.error(i.ErrorMessage, "Doğrulama hatası");
           }
         }
 
@@ -90,6 +89,5 @@ export class CarAddComponent {
       this.selectedBrandId = -1;
     }
   }
-
 
 }
