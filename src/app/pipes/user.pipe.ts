@@ -9,8 +9,6 @@ export class UserPipe implements PipeTransform {
   constructor(private authService: AuthService) { }
 
   transform(value: string): string {
-    console.log(value
-    );
     if (this.authService.isAuthenticated())
       return value;
     return "Giriş Yap";
