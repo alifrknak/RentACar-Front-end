@@ -10,9 +10,8 @@ export class UserPipe implements PipeTransform {
 
   transform(value: string): string {
     if (this.authService.isAuthenticated())
-      return value;
+      return "Çıkış Yap";
     return "Giriş Yap";
-
   }
 
 }

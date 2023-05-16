@@ -12,7 +12,13 @@ import { UserService } from 'src/app/service/user.service';
 export class NavbarComponent {
 
   constructor(public userService: UserService,
-    public storeService:StorageService) {}
+    public storeService:StorageService,
+    public authService:AuthService) {}
 
+    state(){
+        if (this.authService.isAuthenticated()) {
+          this.authService.logOut();
+        }
+   }
 }
 

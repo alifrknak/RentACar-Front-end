@@ -10,14 +10,15 @@ import { RegisterComponent } from './components/register/register.component';
 import { RentalComponent } from './components/rental/rental.component';
 import { LoginGuard } from './guards/login.guard';
 import { ErrorComponent } from './components/error/error.component';
+import { formCanDeactivateGuard } from './guards/form.gurad';
 
 const routes: Routes = [
-  { path: "", component: CarComponent },//redirectTo:""
+  { path: "", component: CarComponent },
   { path: "details/:id", component: CarDetailComponent },
   { path: "details/:id/rental", component: RentalComponent },
   {
-    path: "caradd", children: [
-      { path: "", component: CarAddComponent, canActivate: [LoginGuard] },
+    path: "caradd", canActivate: [LoginGuard], canDeactivate: [formCanDeactivateGuard], children: [
+      { path: "", component: CarAddComponent },
       { path: "coloradd", component: ColorAddComponent },
       { path: "brandadd", component: BrandAddComponent }
     ]

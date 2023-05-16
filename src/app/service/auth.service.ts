@@ -35,4 +35,14 @@ export class AuthService {
     return this.httpClient.post<ResponseModel<TokenModule>>(newPath, register);
   }
 
+  logOut(){
+this.storageService.removeItem(this.storageService.token);
+  }
+
+  state():string{
+    if(this.isAuthenticated())
+  return "ÇIKIŞ YAP"
+    else
+    return "GİRİŞ YAP"}
+
 }
