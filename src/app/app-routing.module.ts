@@ -1,5 +1,5 @@
 import { Component, NgModule } from '@angular/core';
-import { ChildActivationEnd, RouterModule, Routes } from '@angular/router';
+import { ChildActivationEnd, PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { BrandAddComponent } from './components/brand-add/brand-add.component';
 import { CarAddComponent } from './components/car-add/car-add.component';
 import { CarDetailComponent } from './components/car-detail/car-detail.component';
@@ -14,7 +14,7 @@ import { formCanDeactivateGuard } from './guards/form.gurad';
 
 const routes: Routes = [
   { path: "", component: CarComponent },
-  { path: "details/:id", component: CarDetailComponent },
+  { path: "details/:id", component: CarDetailComponent, },
   { path: "details/:id/rental", component: RentalComponent },
   {
     path: "caradd", canActivate: [LoginGuard], canDeactivate: [formCanDeactivateGuard], children: [
@@ -28,8 +28,8 @@ const routes: Routes = [
   { path: "**", component: ErrorComponent }
 ];
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
+@NgModule({                                         //preloading strategy
+  imports: [RouterModule.forRoot(routes ,{preloadingStrategy:PreloadAllModules})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
